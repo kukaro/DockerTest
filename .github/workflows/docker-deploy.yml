@@ -8,6 +8,7 @@ on:
 
 env:
   S3_BUCKET_NAME: groom-test-eris
+  DOCKER_TAG_VERSION: $(date +%s)
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:$DOCKER_TAG_VERSION
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -26,4 +27,4 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: upload s3
-      run: aws s3 cp my-image-name:$(date +%s) s3://$S3_BUCKET_NAME/
+      run: aws s3 cp my-image-name:$DOCKER_TAG_VERSION s3://$S3_BUCKET_NAME/
