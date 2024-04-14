@@ -8,7 +8,7 @@ on:
 
 env:
   S3_BUCKET_NAME: groom-test-eris
-  DOCKER_TAG_VERSION: $(date +%s)
+  DOCKER_TAG_VERSION: ${{ github.run_number }}
 
 jobs:
   build:
