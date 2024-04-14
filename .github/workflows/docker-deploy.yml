@@ -17,10 +17,10 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$DOCKER_TAG_VERSION
+      run: docker build . --file Dockerfile --tag groom-test-docker:$DOCKER_TAG_VERSION
 
     - name: Docker image to file
-      run: docker save groom-test-docker > groom-test-docker.tar
+      run: docker save groom-test-docker:$DOCKER_TAG_VERSION > groom-test-docker.tar
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
