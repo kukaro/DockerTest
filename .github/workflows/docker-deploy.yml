@@ -19,6 +19,9 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$DOCKER_TAG_VERSION
 
+    - name: Docker image to file
+      run: docker save groom-test-docker:$DOCKER_TAG_VERSION > groom-test-docker.tar
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -27,4 +30,4 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: upload s3
-      run: aws s3 cp my-image-name:$DOCKER_TAG_VERSION s3://$S3_BUCKET_NAME/
+      run: aws s3 cp groom-test-docker.tar s3://$S3_BUCKET_NAME/
