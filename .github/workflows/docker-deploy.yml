@@ -20,7 +20,7 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$DOCKER_TAG_VERSION
 
     - name: Docker image to file
-      run: docker save groom-test-docker:$DOCKER_TAG_VERSION > groom-test-docker.tar
+      run: docker save groom-test-docker > groom-test-docker.tar
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
