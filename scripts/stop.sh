@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 echo "#Stopping the container..."
-tocuch ~/$(date)
+touch ~/$(date)
 docker stop groom-test-docker
