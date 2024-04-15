@@ -34,7 +34,7 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: Upload s3
-      run: aws s3 cp groom-test-docker.tar s3://$S3_BUCKET_NAME/
+      run: aws s3 cp $DESTINATION_FILE s3://$S3_BUCKET_NAME/
 
     - name: Code deploy
       run: aws deploy create-deployment --application-name groom-code-deploy
