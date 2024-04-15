@@ -10,6 +10,7 @@ env:
   S3_BUCKET_NAME: groom-test-eris
   DOCKER_TAG_VERSION: ${{ github.run_number }}
   DESTINATION_FILE: groom-test-docker.tar
+  ZIP_FILE: groom-test-docker.zip
 
 jobs:
   build:
@@ -23,8 +24,8 @@ jobs:
     - name: Docker image to file
       run: docker save groom-test-docker:$DOCKER_TAG_VERSION > $DESTINATION_FILE
 
-    - name: Compress files
-      run: tar -czvf $DESTINATION_FILE.gz $DESTINATION_FILE
+    - name: make zip
+      run: zip -qq -r ./$ZIP_FILE .
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -40,4 +41,4 @@ jobs:
       run: aws deploy create-deployment --application-name groom-code-deploy
         --deployment-config-name CodeDeployDefault.OneAtATime
         --deployment-group-name groom-code-deploy-group
-        --s3-location bucket=$S3_BUCKET_NAME,bundleType=tar.gz,key=$DESTINATION_FILE.gz
+        --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$ZIP_FILE
