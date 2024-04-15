@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "#Starting the container..."
+pwd
 docker load < groom-test-docker.tar
 tar -xvf groom-test-docker.tar
 docker images
