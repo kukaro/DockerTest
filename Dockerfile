@@ -1,11 +1,9 @@
 FROM amazonlinux:latest
 MAINTAINER the.eris.net
 
-USER root
 RUN yum update -y
 RUN yum install httpd -y
 COPY ./index.html /var/www/html/index.html
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
