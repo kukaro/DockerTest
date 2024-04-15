@@ -3,7 +3,6 @@
 echo "#Starting the container..."
 pwd
 cd ..
-docker load < groom-test-docker.tar
-tar -xvf groom-test-docker.tar
+docker load < /home/ec2-user/deploy/groom-test-docker.tar
 docker images
 docker run -d -p 80:80 --name groom-test-docker groom-test-docker
