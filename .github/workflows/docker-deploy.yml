@@ -40,4 +40,4 @@ jobs:
       run: aws deploy create-deployment --application-name groom-code-deploy
         --deployment-config-name CodeDeployDefault.OneAtATime
         --deployment-group-name groom-code-deploy-group
-        --s3-location bucket=$S3_BUCKET_NAME,bundleType=tar,key=$DESTINATION_FILE.gz
+        --s3-location bucket=$S3_BUCKET_NAME,bundleType=tar.gz,key=$DESTINATION_FILE.gz
