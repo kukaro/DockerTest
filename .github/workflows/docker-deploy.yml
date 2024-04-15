@@ -10,6 +10,7 @@ env:
   S3_BUCKET_NAME: groom-test-eris
   DOCKER_TAG_VERSION: ${{ github.run_number }}
   DESTINATION_FILE: groom-test-docker.tar
+  DESTINATION_LATEST_FILE: groom-test-docker-latest.tar
   ZIP_FILE: groom-test-docker.zip
 
 jobs:
@@ -26,6 +27,9 @@ jobs:
 
     - name: Docker image to file
       run: docker save groom-test-docker:$DOCKER_TAG_VERSION > $DESTINATION_FILE
+
+    - name: Docker image to file latest
+      run: docker save groom-test-docker:latest > $DESTINATION_LATEST_FILE
 
     - name: make zip
       run: zip -qq -r ./$ZIP_FILE .
