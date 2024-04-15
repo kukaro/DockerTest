@@ -7,8 +7,8 @@ files:
 
 hooks:
   ApplicationStart:
-    - location: stop.sh
+    - location: scripts/stop.sh
       runas: ec2-user
-    - location: deploy.sh
+    - location: scripts/deploy.sh
       timeout: 60
       runas: ec2-user
