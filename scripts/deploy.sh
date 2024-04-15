@@ -2,6 +2,7 @@
 
 echo "#Starting the container..."
 pwd
+cd ..
 docker load < groom-test-docker.tar
 tar -xvf groom-test-docker.tar
 docker images
