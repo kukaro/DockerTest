@@ -7,8 +7,9 @@ files:
 
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/deploy/scripts/stop.sh
+    - location: ~/scripts/stop.sh
+      runas: ec2-user
   ApplicationStart:
-    - location: /home/ec2-user/deploy/scripts/deploy.sh
+    - location: ~/scripts/deploy.sh
       timeout: 60
       runas: ec2-user
